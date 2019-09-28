@@ -17,7 +17,7 @@ Note: DSU has a runtime dependency on libssh2-1.
 apt update && apt-get -qq install dell-system-update libssh2-1;
 ```
 
-### Dell DSU .deb Package List:
+### Dell DSU .deb package list:
 - dell-system-update_1.7.0-19.05.00_amd64.deb
 - dell-system-update_1.6.0-18.11.00_amd64.deb
 - dell-system-update_1.5.3-18.03.00_amd64.deb
@@ -33,13 +33,13 @@ To retrieve one of these packages individually, use the following command:
 ```bash
 curl -s <BIN-FILE> | sed "0,/^#####Startofarchive#####/d" | tar --wildcards --no-anchored '*.deb' -zxf -; done
 ```
-### Dell DSU Linux BIN Package List:
-- https://downloads.dell.com/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
-- https://downloads.dell.com/FOLDER05327755M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN
-- https://downloads.dell.com/FOLDER04882835M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN
-- https://downloads.dell.com/FOLDER04748790M/1/Systems-Management_Application_T50FD_LN64_1.5.2_A00.BIN
-- https://downloads.dell.com/FOLDER04752936M/1/Systems-Management_Application_4DXF8_LN64_1.5.1_A00.BIN
-- https://downloads.dell.com/FOLDER04496162M/1/Systems-Management_Application_YH0VX_LN64_1.5.0_A00.BIN
-- https://downloads.dell.com/FOLDER04327910M/1/Systems-Management_Application_0M81X_LN64_1.4.2_A00.BIN
-- https://downloads.dell.com/FOLDER04297923M/1/Systems-Management_Application_G41KN_LN64_1.4.1_A00.BIN
-- https://downloads.dell.com/FOLDER04166247M/1/Systems-Management_Application_YKMFW_LN64_1.4.0_A00.BIN
+### Dell DSU Linux BIN file list:
+https://downloads.dell.com/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
+https://downloads.dell.com/FOLDER05327755M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN
+https://downloads.dell.com/FOLDER04882835M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN
+https://downloads.dell.com/FOLDER04748790M/1/Systems-Management_Application_T50FD_LN64_1.5.2_A00.BIN
+https://downloads.dell.com/FOLDER04752936M/1/Systems-Management_Application_4DXF8_LN64_1.5.1_A00.BIN
+https://downloads.dell.com/FOLDER04496162M/1/Systems-Management_Application_YH0VX_LN64_1.5.0_A00.BIN
+https://downloads.dell.com/FOLDER04327910M/1/Systems-Management_Application_0M81X_LN64_1.4.2_A00.BIN
+https://downloads.dell.com/FOLDER04297923M/1/Systems-Management_Application_G41KN_LN64_1.4.1_A00.BIN
+https://downloads.dell.com/FOLDER04166247M/1/Systems-Management_Application_YKMFW_LN64_1.4.0_A00.BIN
