@@ -8,5 +8,5 @@ curl -s http://www.exabit.io/ubuntu/get-dell-dsu-deb-pkgs.sh | bash;
 ```
 
 ```bash
-echo "deb [arch=amd64 trusted=yes] http://www.example.com/dsu/ /" > /etc/apt/sources.list.d/dsu.list
+echo "deb [arch=amd64 trusted=yes] http://www.example.com/dsu/ /" > /etc/apt/sources.list.d/dsu.list;
 ```
