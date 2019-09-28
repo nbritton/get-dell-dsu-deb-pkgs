@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Name: get-dell-dsu-deb-pkgs, Version: 1
+# Author: Nikolas Britton
+#     E-mail: ytvzwld.mcteezy@rxltw.nzx (caesar, 11)
+#     E-mail: jxneppkj@ienwjpeo.yki (caesar, 22)
+#     Website: http://www.exabit.io
+# Copyright 2019 Nikolas Britton, Apache 2.0 License
+
+## Dell EMC System Update ("DSU") for Ubuntu Server.
+## Ubuntu deb packages are hidden inside of the DSU Linux DUP BIN files.
+
+## Download DSU Linux DUP BIN files:
+echo "\
+https://downloads.dell.com/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
+https://downloads.dell.com/FOLDER05605558M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN.sign
+https://downloads.dell.com/FOLDER05327755M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN
+https://downloads.dell.com/FOLDER05327750M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN.sign
+https://downloads.dell.com/FOLDER04882835M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN
+https://downloads.dell.com/FOLDER04882839M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN.sign
+https://downloads.dell.com/FOLDER04748790M/1/Systems-Management_Application_T50FD_LN64_1.5.2_A00.BIN
+https://downloads.dell.com/FOLDER04748791M/1/Systems-Management_Application_T50FD_LN64_1.5.2_A00.BIN.sign
+https://downloads.dell.com/FOLDER04752936M/1/Systems-Management_Application_4DXF8_LN64_1.5.1_A00.BIN
+https://downloads.dell.com/FOLDER04752938M/1/Systems-Management_Application_4DXF8_LN64_1.5.1_A00.BIN.sign
+https://downloads.dell.com/FOLDER04496162M/1/Systems-Management_Application_YH0VX_LN64_1.5.0_A00.BIN
+https://downloads.dell.com/FOLDER04496164M/1/Systems-Management_Application_YH0VX_LN64_1.5.0_A00.BIN.sign
+https://downloads.dell.com/FOLDER04327910M/1/Systems-Management_Application_0M81X_LN64_1.4.2_A00.BIN
+https://downloads.dell.com/FOLDER04327906M/1/Systems-Management_Application_0M81X_LN64_1.4.2_A00.BIN.sign
+https://downloads.dell.com/FOLDER04297923M/1/Systems-Management_Application_G41KN_LN64_1.4.1_A00.BIN
+https://downloads.dell.com/FOLDER04297925M/1/Systems-Management_Application_G41KN_LN64_1.4.1_A00.BIN.sign
+https://downloads.dell.com/FOLDER04166247M/1/Systems-Management_Application_YKMFW_LN64_1.4.0_A00.BIN
+https://downloads.dell.com/FOLDER04166248M/1/Systems-Management_Application_YKMFW_LN64_1.4.0_A00.BIN.sign
+" | xargs wget -q;
+
+## Get GPG signing keys:
+gpg --quiet --keyserver ha.pool.sks-keyservers.net --recv-keys 23B66A9D 1019CED6 34D8786F;
+
+## Verify downloaded packages:
+gpg --quiet --verify-files *.sign 2>&1 | while read line; do
+    if [[ $line =~ BAD ]]; then
+        echo ${line};
+        exit 1;
+    fi;
+done
+
+## Extract deb packages from DUP BINs:
+for file in $(ls *.BIN); do
+    tail -n +$(awk -F: '/^#####Startofarchive#####/ {printf NR+1}' ${file}) ${file} | tar --wildcards --no-anchored '*.deb' -zxf -;
+done
+
+## Move DSU BIN files to ./dsu-bin-files
+mkdir dsu-bin-files;
+mv Systems-Management_Application_* ./dsu-bin-files;
+
+# Make DSU apt package repository
+mv l64 amd64;
+test -x /usr/bin/apt-ftparchive || apt -y install apt-utils;
+apt-ftparchive --arch amd64 packages amd64 > Packages;
+gzip -k -f Packages;
+apt-ftparchive release . > Release;
