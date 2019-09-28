@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Name: get-dell-dsu-deb-pkgs, Version: 2
+# Author: Nikolas Britton
+#     E-mail: ytvzwld.mcteezy@rxltw.nzx (caesar, 11)
+#     E-mail: jxneppkj@ienwjpeo.yki (caesar, 22)
+#     Website: http://www.exabit.io
+# Copyright 2019 Nikolas Britton, Apache 2.0 License
+
+## Dell EMC System Update ("DSU") for Ubuntu Server.
+## Ubuntu deb packages are hidden inside of the DSU Linux DUP BIN files.
+
+SITE="https://downloads.dell.com";
+MARKER="#####Startofarchive#####";
+
+curl --silent ${SITE} > /dev/null || {
+    echo "Failed to connect to ${SITE}";
+    exit 1;
+}
+
+which apt-ftparchive > /dev/null || {
+    echo "The apt-ftparchive utility could not be found."
+    echo "To install it, run: apt install apt-utils."
+}
+
+## Retrieve DSU Linux DUP BIN files and extract deb packages:
+cat <<EOF | while read URL; do curl -s ${URL} | sed "0,/^${MARKER}/d" | tar --wildcards --no-anchored '*.deb' -zxf -; done
+${SITE}/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
+${SITE}/FOLDER05327755M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN
+${SITE}/FOLDER04882835M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN
+${SITE}/FOLDER04748790M/1/Systems-Management_Application_T50FD_LN64_1.5.2_A00.BIN
+${SITE}/FOLDER04752936M/1/Systems-Management_Application_4DXF8_LN64_1.5.1_A00.BIN
+${SITE}/FOLDER04496162M/1/Systems-Management_Application_YH0VX_LN64_1.5.0_A00.BIN
+${SITE}/FOLDER04327910M/1/Systems-Management_Application_0M81X_LN64_1.4.2_A00.BIN
+${SITE}/FOLDER04297923M/1/Systems-Management_Application_G41KN_LN64_1.4.1_A00.BIN
+${SITE}/FOLDER04166247M/1/Systems-Management_Application_YKMFW_LN64_1.4.0_A00.BIN
+EOF
+
+# Make DSU apt package repository
+mv l64 amd64;
+apt-ftparchive --arch amd64 packages amd64 > Packages;
+gzip -k -f Packages;
+apt-ftparchive release . > Release;
