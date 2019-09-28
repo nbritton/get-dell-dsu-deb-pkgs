@@ -10,3 +10,9 @@ curl -s http://www.exabit.io/ubuntu/get-dell-dsu-deb-pkgs.sh | bash;
 ```bash
 echo "deb [arch=amd64 trusted=yes] http://yoursite.com/dsu/ /" > /etc/apt/sources.list.d/dsu.list;
 ```
+
+Note: DSU has a runtime dependency on libssh2-1.
+
+```bash
+apt update && apt-get -qq dell-system-update libssh2-1;
+```
