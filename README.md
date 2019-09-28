@@ -6,3 +6,7 @@ For some asinine reason Dell does not have a Ubuntu package repository for the D
 ```bash
 curl -s http://www.exabit.io/ubuntu/get-dell-dsu-deb-pkgs.sh | bash;
 ```
+
+```bash
+echo "deb [arch=amd64 trusted=yes] http://www.example.com/dsu/ /" > /etc/apt/sources.list.d/dell-system-update.list
+```
