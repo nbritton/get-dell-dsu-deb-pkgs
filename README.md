@@ -14,5 +14,5 @@ echo "deb [arch=amd64 trusted=yes] http://yoursite.com/dsu/ /" > /etc/apt/source
 Note: DSU has a runtime dependency on libssh2-1.
 
 ```bash
-apt update && apt-get -qq dell-system-update libssh2-1;
+apt update && apt-get -qq install dell-system-update libssh2-1;
 ```
