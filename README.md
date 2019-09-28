@@ -1,5 +1,5 @@
 # get-dell-dsu-deb-pkgs
-Retrieve Dell System Update .deb packages for Ubuntu.
+Retrieve Dell System Update .deb packages for Ubuntu Server.
 
 For some asinine reason Dell does not have a Ubuntu package repository for the Dell System Update ("DSU") utility, they publish a .deb package, however it's hidden away inside of a Dell Update Package ("DUP") BIN file. This tool fixes that oversight by retrieving the .deb packages for you, and also creates a local DSU package repository that you can host yourself.
 
