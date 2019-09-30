@@ -1,14 +1,15 @@
-root@dukeoscmp404:~# cat /etc/*release | grep VERSION=; uname -a;
+root@cmp405:~# cat /etc/*release | grep VERSION=; uname -a;
 VERSION="16.04.5 LTS (Xenial Xerus)"
 Linux dukeoscmp404 4.15.0-50-generic #54~16.04.1-Ubuntu SMP Wed May 8 15:55:19 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
-root@dukeoscmp404:~# dsu --version
+
+root@cmp405:~# dsu --version
 DELL EMC System Update 1.6.0
 Copyright (C) 2014 DELL EMC Proprietary.
-root@dukeoscmp404:~# for library in $(ldd /usr/sbin/dsu | awk '{print $3}' | sort -u); do dpkg -S $library; done | awk -F: '{print $1}' | sort -uV | paste -sd " ";
-dpkg-query: no path found matching pattern *(0x00007ffddc99a000)*
+
+root@cmp405:~# for library in $(ldd /usr/sbin/dsu | awk '{print $3}' | sort -u); do dpkg -S $library; done | awk -F: '{print $1}' | sort -uV | paste -sd " ";
 dell-system-update libasn1-8-heimdal libc6 libcomerr2 libffi6 libgcc1 libgcrypt20 libglib2.0-0 libgmp10 libgnutls30 libgpg-error0 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libidn11 libkrb5-26-heimdal libldap-2.4-2 libnettle6 libp11-kit0 libpcre3 libroken18-heimdal libsasl2-2 libselinux1 libsqlite3-0 libssh2-1 libssl1.0.0 libstdc++6 libtasn1-6 libuuid1 libwind0-heimdal zlib1g
-root@dukeoscmp404:~# for library in $(ldd /usr/sbin/dsu | awk '{print $3}' | sort -u); do dpkg -S $library; done | sort -uV
-dpkg-query: no path found matching pattern *(0x00007ffd07324000)*
+
+root@cmp405:~# for library in $(ldd /usr/sbin/dsu | awk '{print $3}' | sort -u); do dpkg -S $library; done | sort -uV
 dell-system-update: /usr/lib/dsulib/libcurl.so.4
 dell-system-update: /usr/lib/dsulib/libdcmkit.so
 dell-system-update: /usr/lib/dsulib/libdrone.so
