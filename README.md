@@ -11,10 +11,10 @@ curl -s http://www.exabit.io/ubuntu/get-dell-dsu-deb-pkgs.sh | bash;
 echo "deb [arch=amd64 trusted=yes] http://yoursite.com/dsu/ /" > /etc/apt/sources.list.d/dsu.list;
 ```
 
-Note: DSU has a runtime dependency on libssh2-1.
+Note: DSU has a runtime dependency on libssh2-1 and libgpgme11.
 
 ```bash
-apt update && apt-get -qq install dell-system-update libssh2-1;
+apt update && apt-get -qq install dell-system-update libssh2-1 libgpgme11;
 ```
 
 ### Dell DSU .deb package list:
@@ -31,7 +31,7 @@ apt update && apt-get -qq install dell-system-update libssh2-1;
 To retrieve one of these packages individually, use the following command:
 
 ```bash
-curl -s <BIN-FILE> | sed "0,/^#####Startofarchive#####/d" | tar --wildcards --no-anchored '*.deb' -zxf -; done
+curl -s <BIN-FILE> | sed "0,/^#####Startofarchive#####/d" | tar --wildcards --no-anchored '*.deb' -zxf -;
 ```
 ### Dell DSU Linux BIN file list:
 https://downloads.dell.com/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
