@@ -1,0 +1,60 @@
+root@cmp404:~# cat /etc/*release | grep VERSION=; uname -a;
+VERSION="14.04.6 LTS, Trusty Tahr"
+Linux cmp404 4.4.0-148-generic #174~14.04.1-Ubuntu SMP Thu May 9 08:17:37 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+root@cmp404:~# dsu --version
+DELL EMC System Update 1.6.0
+Copyright (C) 2014 DELL EMC Proprietary.
+
+root@dukeoscmp404:~# for library in $(ldd /usr/sbin/dsu | awk '{print $3}' | sort -u); do dpkg -S $library; done | awk -F: '{print $1}' | sort -uV | paste -sd " ";
+dell-system-update libasn1-8-heimdal libc6 libcomerr2 libffi6 libgcc1 libgcrypt11 libglib2.0-0 libgnutls26 libgpg-error0 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhx509-5-heimdal libidn11 libkrb5-26-heimdal libldap-2.4-2 libp11-kit0 libpcre3 libroken18-heimdal libsasl2-2 libselinux1 libsqlite3-0 libssh2-1 libssl1.0.0 libstdc++6 libtasn1-6 libuuid1 libwind0-heimdal zlib1g
+
+root@dukeoscmp404:~# for library in $(ldd /usr/sbin/dsu | awk '{print $3}' | sort -u); do dpkg -S $library; done | sort -uV
+dell-system-update: /usr/lib/dsulib/libcurl.so.4
+dell-system-update: /usr/lib/dsulib/libdcmkit.so
+dell-system-update: /usr/lib/dsulib/libdrone.so
+dell-system-update: /usr/lib/dsulib/libdsmbase.so
+dell-system-update: /usr/lib/dsulib/libdsmcabinet.so
+dell-system-update: /usr/lib/dsulib/libdsmxml.so
+dell-system-update: /usr/lib/dsulib/libgcab-1.0.so.0
+dell-system-update: /usr/lib/dsulib/libxerces-c-3.1.so
+libasn1-8-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libasn1.so.8
+libc6:amd64: /lib/x86_64-linux-gnu/libcrypt.so.1
+libc6:amd64: /lib/x86_64-linux-gnu/libc.so.6
+libc6:amd64: /lib/x86_64-linux-gnu/libdl.so.2
+libc6:amd64: /lib/x86_64-linux-gnu/libm.so.6
+libc6:amd64: /lib/x86_64-linux-gnu/libpthread.so.0
+libc6:amd64: /lib/x86_64-linux-gnu/libresolv.so.2
+libcomerr2:amd64: /lib/x86_64-linux-gnu/libcom_err.so.2
+libffi6:amd64: /usr/lib/x86_64-linux-gnu/libffi.so.6
+libgcc1:amd64: /lib/x86_64-linux-gnu/libgcc_s.so.1
+libgcrypt11:amd64: /lib/x86_64-linux-gnu/libgcrypt.so.11
+libglib2.0-0:amd64: /lib/x86_64-linux-gnu/libglib-2.0.so.0
+libglib2.0-0:amd64: /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0
+libglib2.0-0:amd64: /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0
+libglib2.0-0:amd64: /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0
+libgnutls26:amd64: /usr/lib/x86_64-linux-gnu/libgnutls.so.26
+libgpg-error0:amd64: /lib/x86_64-linux-gnu/libgpg-error.so.0
+libgssapi3-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libgssapi.so.3
+libhcrypto4-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libhcrypto.so.4
+libheimbase1-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libheimbase.so.1
+libheimntlm0-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libheimntlm.so.0
+libhx509-5-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libhx509.so.5
+libidn11:amd64: /usr/lib/x86_64-linux-gnu/libidn.so.11
+libkrb5-26-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libkrb5.so.26
+libldap-2.4-2:amd64: /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2
+libldap-2.4-2:amd64: /usr/lib/x86_64-linux-gnu/libldap_r-2.4.so.2
+libp11-kit0:amd64: /usr/lib/x86_64-linux-gnu/libp11-kit.so.0
+libpcre3:amd64: /lib/x86_64-linux-gnu/libpcre.so.3
+libroken18-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libroken.so.18
+libsasl2-2:amd64: /usr/lib/x86_64-linux-gnu/libsasl2.so.2
+libselinux1:amd64: /lib/x86_64-linux-gnu/libselinux.so.1
+libsqlite3-0:amd64: /usr/lib/x86_64-linux-gnu/libsqlite3.so.0
+libssh2-1:amd64: /usr/lib/x86_64-linux-gnu/libssh2.so.1
+libssl1.0.0:amd64: /lib/x86_64-linux-gnu/libcrypto.so.1.0.0
+libssl1.0.0:amd64: /lib/x86_64-linux-gnu/libssl.so.1.0.0
+libstdc++6:amd64: /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+libtasn1-6:amd64: /usr/lib/x86_64-linux-gnu/libtasn1.so.6
+libuuid1:amd64: /lib/x86_64-linux-gnu/libuuid.so.1
+libwind0-heimdal:amd64: /usr/lib/x86_64-linux-gnu/libwind.so.0
+zlib1g:amd64: /lib/x86_64-linux-gnu/libz.so.1
