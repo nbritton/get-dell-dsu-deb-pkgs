@@ -21,6 +21,7 @@ curl --silent ${SITE} > /dev/null || {
 which apt-ftparchive > /dev/null || {
     echo "The apt-ftparchive utility could not be found."
     echo "To install it, run: apt install apt-utils."
+    exit 1;
 }
 
 ## Retrieve DSU Linux DUP BIN files and extract deb packages:
