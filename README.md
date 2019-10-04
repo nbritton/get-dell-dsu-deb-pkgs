@@ -11,7 +11,7 @@ curl -s http://www.exabit.io/ubuntu/get-dell-dsu-deb-pkgs | bash;
 echo "deb [arch=amd64 trusted=yes] http://yoursite.com/dsu/ /" > /etc/apt/sources.list.d/dsu.list;
 ```
 
-Note: DSU has a runtime dependency on libssh2-1 and libgpgme11.
+Note: All DSU versions have a runtime dependency on libssh2-1, and DSU 1.7+ also requires libgpgme11.
 
 ```bash
 apt update && apt-get -qq install dell-system-update libssh2-1 libgpgme11;
