@@ -42,3 +42,8 @@ mv l64 amd64;
 apt-ftparchive --arch amd64 packages amd64 > Packages;
 gzip -k -f Packages;
 apt-ftparchive release . > Release;
+
+# For DSU 1.7+, these pgp keys need to be copied to /usr/libexec/dell_dup/
+wget --quiet https://linux.dell.com/repo/pgp_pubkeys/0x756ba70b1019ced6.asc;
+wget --quiet https://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc;
+wget --quiet https://linux.dell.com/repo/pgp_pubkeys/0xca77951d23b66a9d.asc;
