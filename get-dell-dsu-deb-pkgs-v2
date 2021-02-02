@@ -26,6 +26,7 @@ which apt-ftparchive > /dev/null || {
 
 ## Retrieve DSU Linux DUP BIN files and extract deb packages:
 cat <<EOF | while read URL; do curl -s ${URL} | sed "0,/^${MARKER}/d" | tar --wildcards --no-anchored '*.deb' -zxf -; done
+${SITE}/FOLDER06226521M/1/Systems-Management_Application_7PMM2_LN64_1.8.0_A00.BIN
 ${SITE}/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
 ${SITE}/FOLDER05327755M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN
 ${SITE}/FOLDER04882835M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN
