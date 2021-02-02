@@ -34,6 +34,7 @@ To retrieve one of these packages individually, use the following command:
 curl -s <BIN-FILE> | sed "0,/^#####Startofarchive#####/d" | tar --wildcards --no-anchored '*.deb' -zxf -;
 ```
 ### Dell DSU Linux BIN file list:
+https://downloads.dell.com/FOLDER06226521M/1/Systems-Management_Application_7PMM2_LN64_1.8.0_A00.BIN
 https://downloads.dell.com/FOLDER05605556M/1/Systems-Management_Application_DVHNP_LN64_1.7.0_A00.BIN
 https://downloads.dell.com/FOLDER05327755M/1/Systems-Management_Application_FT56W_LN64_1.6.0_A00.BIN
 https://downloads.dell.com/FOLDER04882835M/1/Systems-Management_Application_RT3W9_LN64_1.5.3_A00.BIN
